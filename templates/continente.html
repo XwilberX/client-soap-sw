@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Lista de paises de {{ data['Continent']['sName'] }}</h1>
+    <br>
+    <h3>Estos son los paises que conforman {{ data['Continent']['sName'] }}</h3>
+    <br><br>
+
+    <div class="cord shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <table id="Table1" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ISO-Code</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                {% for country in data['CountryCodeAndNames']['tCountryCodeAndName'] %}
+                <tbody>
+                    <tr>
+                        <td>{{ country['sISOCode'] }}</td>
+                        <td>{{ country['sName'] }}</td>
+                    </tr>
+                </tbody>
+    
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script>
+    $('#Table1').DataTable({
+        responsive: true,
+        autoWidth: false,
+        "language": {
+            "lengthMenu": "Mostrar MENU registros por página",
+            "zeroRecords": "Nada encontrado - disculpa",
+            "info": "Mostrando la página PAGE de PAGES",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtrado de MAX registros totales)",
+            "search": "Buscar:",
+            "paginate":{
+                'next': 'Siguiente',
+                'previous': 'Anterior'
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+

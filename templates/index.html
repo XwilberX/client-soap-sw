@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Cliente SOAP</h1>
+    <br>
+    <h3>Lista de continentes con paises</h3>
+    <br><br><br>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for continent in data %}
+
+
+        <div class="col">
+            <div class="card">
+                <img height="240px" src="{{ url_for('static', filename = 'images/{}.jpg'.format(continent['sCode'])) }}"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ continent['sName'] }}
+                        <span class="badge rounded-pill bg-info text-dark">{{ continent['sCode'] }}</span>
+                    </h5>
+                    <p class="card-text">Conoce los paises que conforma el continente de {{ continent['sName'] }}.</p>
+                    <a href="{{ url_for('continent' , code=continent['sCode']) }}" class="btn btn-primary">Ver paises
+                        del Continente
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+{% endblock %}
